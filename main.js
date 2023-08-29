@@ -34,34 +34,39 @@ taskList.addEventListener('click', (event) => {
 addTaskBtn.addEventListener('click', () => {
     const taskInput = document.getElementById('taskInput')
     const taskInputValue = taskInput.value
-    taskInput.value = ''
-    const taskBlock = document.getElementById('task');
-    const newTaskBlock = document.createElement('div');
-    newTaskBlock.className = 'col-lg-12 task';
+    taskInput.focus()
+    if (taskInputValue === '') {
+        alert('Поле ввода не должно быть пустым!')
+    } else {
+        taskInput.value = ''
+        const taskBlock = document.getElementById('task');
+        const newTaskBlock = document.createElement('div');
+        newTaskBlock.className = 'col-lg-12 task';
 
-    const taskContent = document.createElement('div');
-    taskContent.className = 'task-container';
-    taskContent.innerHTML = `<p>${taskInputValue}</p>`;
+        const taskContent = document.createElement('div');
+        taskContent.className = 'task-container';
+        taskContent.innerHTML = `<p>${taskInputValue}</p>`;
 
-    const doneBtn = document.createElement('button');
-    doneBtn.className = 'btn btn-primary done-btn';
-    doneBtn.style.height = '50px';
-    doneBtn.textContent = 'Завершено';
-    doneBtn.dataset.action = 'done'
+        const doneBtn = document.createElement('button');
+        doneBtn.className = 'btn btn-primary done-btn';
+        doneBtn.style.height = '50px';
+        doneBtn.textContent = 'Завершено';
+        doneBtn.dataset.action = 'done'
 
-    const deleteBtn = document.createElement('button');
-    deleteBtn.className = 'btn btn-danger delete-btn';
-    deleteBtn.style.height = '50px';
-    deleteBtn.textContent = 'Удалить';
-    deleteBtn.dataset.action = 'delete'
+        const deleteBtn = document.createElement('button');
+        deleteBtn.className = 'btn btn-danger delete-btn';
+        deleteBtn.style.height = '50px';
+        deleteBtn.textContent = 'Удалить';
+        deleteBtn.dataset.action = 'delete'
 
-    newTaskBlock.appendChild(taskContent);
-    newTaskBlock.appendChild(doneBtn);
-    newTaskBlock.appendChild(deleteBtn);
+        newTaskBlock.appendChild(taskContent);
+        newTaskBlock.appendChild(doneBtn);
+        newTaskBlock.appendChild(deleteBtn);
 
-    taskBlock.parentNode.insertBefore(newTaskBlock, taskBlock.nextSibling);
+        taskBlock.parentNode.insertBefore(newTaskBlock, taskBlock.nextSibling);
 
-    countTasks()
+        countTasks()
+    }
 })
 
 
