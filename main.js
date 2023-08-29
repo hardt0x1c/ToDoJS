@@ -10,6 +10,7 @@ taskList.addEventListener('click', (event) => {
         const taskBlock = event.target.parentNode
         taskBlock.remove()
     }
+    countTasks()
 })
 
 
@@ -19,11 +20,14 @@ taskList.addEventListener('click', (event) => {
         if (taskBlock.style.opacity === '0.5') {
             taskBlock.style.opacity = '1'
             taskBlock.style.textDecoration = 'none'
+            taskBlock.className = 'col-lg-12 task'
         } else {
             taskBlock.style.opacity = '0.5'
             taskBlock.style.textDecoration = 'line-through'
+            taskBlock.className = 'col-lg-12 task done-task'
         }
     }
+    countTasks()
 })
 
 
@@ -56,4 +60,18 @@ addTaskBtn.addEventListener('click', () => {
     newTaskBlock.appendChild(deleteBtn);
 
     taskBlock.parentNode.insertBefore(newTaskBlock, taskBlock.nextSibling);
+
+    countTasks()
 })
+
+
+function countTasks() {
+    const tasks = document.querySelectorAll('.task')
+    const tasksDone = document.querySelectorAll('.done-task')
+    const countTasksSelector = document.getElementById('countTasks')
+    const countDoneTasksSelector = document.getElementById('countDoneTasks')
+    let countDoneTasks = tasksDone.length
+    let countTasks = tasks.length - 1
+    countTasksSelector.innerHTML = `Количество задач: ${countTasks}`
+    countDoneTasksSelector.innerHTML = `Количество выполненных задач: ${countDoneTasks}`
+}
